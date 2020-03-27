@@ -19,4 +19,8 @@ defmodule MyAppWeb.FallbackController do
     |> put_view(MyAppWeb.ErrorView)
     |> render(:"422")
   end
+
+  def call(conn, error) do
+    IO.inspect(error)
+  end
 end

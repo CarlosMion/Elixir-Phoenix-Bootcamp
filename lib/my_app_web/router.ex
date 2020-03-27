@@ -10,10 +10,16 @@ defmodule MyAppWeb.Router do
     plug(:ensure_authenticated)
   end
 
+  scope "/api_2", MyAppWeb do
+    pipe_through :api
+    post "/users/sign_in", UserController, :sign_in
+    post "/users/sign_up", UserController, :sign_up
+  end
+
   scope "/api", MyAppWeb do
     pipe_through([:api, :api_auth])
     resources("/users", UserController, except: [:new, :edit])
-    post("/users/sign_in", UserController, :sign_in)
+    get "/users/:id/list", UserController, :list
   end
 
   defp ensure_authenticated(conn, _opts) do

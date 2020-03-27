@@ -11,7 +11,7 @@ defmodule MyAppWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id, email: user.email, is_active: user.is_active}
+    %{id: user.id, email: user.email, interests: user.interests}
   end
 
   def render("sign_in.json", %{user: user}) do
@@ -19,7 +19,8 @@ defmodule MyAppWeb.UserView do
       data: %{
         user: %{
           id: user.id,
-          email: user.email
+          email: user.email,
+          interests: user.interests
         }
       }
     }
