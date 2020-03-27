@@ -52,10 +52,12 @@ defmodule MyAppWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
+  def update(conn, params) do
+    %{"id" => id} = params
+
     user = Auth.get_user!(id)
 
-    with {:ok, %User{} = user} <- Auth.update_user(user, user_params) do
+    with {:ok, %User{} = user} <- Auth.update_user(user, params) do
       render(conn, "show.json", user: user)
     end
   end
